@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
+  standalone: true,
   styleUrls: ['./map.component.sass']
 })
 export class MapComponent implements OnInit {
