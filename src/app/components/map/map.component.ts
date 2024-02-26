@@ -10,9 +10,11 @@ import { panelsPalette } from '../../colors';
 
 declare var google: any;
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
+  standalone: true,
   styleUrls: ['./map.component.sass']
 })
 export class MapComponent implements OnInit, AfterViewInit {

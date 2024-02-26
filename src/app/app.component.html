@@ -1,9 +1,8 @@
-
-
-<main class="main">
-  <div class="content">
-    <router-outlet />
+<div class="content-wrapper">
+  <div [hidden]="loading$ | async">
+    <router-outlet></router-outlet>
   </div>
-</main>
-
-
+  <div [hidden]="!(loading$ | async)" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

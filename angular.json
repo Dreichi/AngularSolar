@@ -31,6 +31,8 @@
             ],
             "styles": [
               "src/styles.sass",
+              "src/sass/variables.sass",
+              "src/sass/base.sass",
               "node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
@@ -103,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e1d4ffd6-f2ff-4905-8d41-a7fa0ca28b88"
   }
 }
