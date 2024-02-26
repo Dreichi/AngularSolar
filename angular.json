@@ -31,6 +31,8 @@
             ],
             "styles": [
               "src/styles.sass",
+              "src/sass/variables.sass",
+              "src/sass/base.sass",
               "node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
