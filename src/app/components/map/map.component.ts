@@ -56,6 +56,9 @@ export class MapComponent implements OnInit, AfterViewInit {
         const mapOptions: google.maps.MapOptions = {
             center: new google.maps.LatLng(50.433020, 2.8279100),
             zoom: 16,
+            streetViewControl: false,
+            fullscreenControl: false,
+            mapTypeControl: false,
             mapTypeId: google.maps.MapTypeId.SATELLITE,
         };
 
