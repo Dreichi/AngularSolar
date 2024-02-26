@@ -2,7 +2,6 @@ import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit, ElementRef, View
 import { isPlatformBrowser } from '@angular/common';
 import { SolarApiService } from '../../services/solar-api.service';
 import { environment } from "../../../environments/environment";
-// import { VisualizationService } from '../../services/visualization.service';
 import { HttpClient } from '@angular/common/http';
 import { google } from 'google-maps';
 import { createPalette, rgbToColor } from '../../services/visualization.service';
@@ -24,7 +23,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient,
     private solarApiService: SolarApiService,
-    // private visualizationService: VisualizationService 
   ) {}
 
   ngOnInit(): void {
@@ -66,6 +64,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.map.addListener('click', (event: { latLng: { lat: () => number; lng: () => number; }; }) => {
             const latLng = { latitude: event.latLng.lat(), longitude: event.latLng.lng() };
             this.solarApiService.findClosestBuilding(latLng).subscribe(buildingInsights => {
+              console.log('Building insights:', buildingInsights);
                 const solarPotential = buildingInsights.solarPotential;
                     const palette = createPalette(panelsPalette).map(rgbToColor); 
                     const minEnergy = solarPotential.solarPanels.slice(-1)[0].yearlyEnergyDcKwh;
