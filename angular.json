@@ -28,13 +28,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets/images",
-              "src/sass"
+              "src/assets/images"
             ],
             "styles": [
               "src/styles.sass",
-              "src/assets/sass/variables.sass",
-              "src/assets/sass/base.sass",
+              "src/sass/variables.sass",
+              "src/sass/base.sass",
               "node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
