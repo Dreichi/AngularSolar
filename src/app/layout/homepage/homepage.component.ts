@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {NavbarComponent} from "../../shared/components/navbar/navbar.component";
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 
 
@@ -14,12 +15,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NavbarComponent,
     FormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FooterComponent
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.sass'
 })
-export class HomepageComponent {
+export class HomepageComponent{
   title = 'Accueil';
 
 
