@@ -6,12 +6,17 @@
   padding: 20px
   background-color: #151515
   color: #fff
-  gap: 16px
+  gap: 32px
+
   height: fit-content
   .custom-flex:first-child
     display: flex
     justify-content: center
-    gap: 32px
+    gap: 128px
+
+    @media (max-width: 768px)
+      gap: 16px
+      flex-direction: column
 
     .custom-flex--column:first-child
       display: flex
@@ -22,7 +27,6 @@
         justify-content: space-between
         align-items: flex-end
         label
-          transform: translateX(-50px)
           font-weight: 700
           font-size: 20px
         button
@@ -49,12 +53,16 @@
         border: none
         padding: 0 16px
         color: #000
+        @media (max-width: 768px)
+          width: 100%
         &:focus
           outline: #1468CB auto 2px
 
     .custom-flex--column:last-child
       display: flex
       gap: 24px
+      @media (max-width: 768px)
+        justify-content: center
       img
         height: 50px
         transform: translateY(20px)
@@ -66,9 +74,14 @@
   .custom-flex:last-child
     display: flex
     justify-content: center
-    gap: 132px
+    gap: 256px
     margin-top: 32px
-
+    @media (max-width: 768px)
+      gap: 32px
+      margin-top: 64px
+    @media (max-width: 479px)
+      flex-direction: column
+      align-self: center
     .custom-flex--column:first-child
       display: flex
       flex-direction: column
@@ -89,7 +102,7 @@
     .custom-flex--column:last-child
       display: flex
       flex-direction: column
-      gap: 24px
+      gap: 8px
       a
         color: #1468CB
         text-decoration: none

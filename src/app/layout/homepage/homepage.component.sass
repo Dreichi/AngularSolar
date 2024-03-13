@@ -5,6 +5,9 @@
   background-attachment: fixed
   height: 100vh
 
+  @media (max-width: 991px)
+    background-attachment: initial
+
   .titles
     display: flex
     flex-direction: column
@@ -14,10 +17,20 @@
 
     span
       font-weight: 700
+
+    @media (max-width: 991px)
+      text-align: center
+
     .heading-01
       font-size: 3.5rem
       font-weight: 700
       color: #ffffff
+
+      @media (max-width: 479px)
+        font-size: 2.5rem
+    .heading-02
+      @media (max-width: 479px)
+        font-size: 1rem
 
   .eligibility
     background-color: rgba(255, 255, 255, 0.25)
@@ -31,6 +44,7 @@
     max-width: 900px
     max-height: 180px
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
+
 
     &-title
       font-weight: 600
@@ -68,13 +82,37 @@
         background-color: #1468CB
         font-weight: 600
         font-size: 20px
-        height: 50px
+        height: 45px
         box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
 
 
         &:hover
           background-color: #0E5EAD
           cursor: pointer
+    @media (max-width: 991px)
+      padding: 12px 24px
+      margin: 0 16px
+      max-height: initial
+
+      &-input
+        .adress
+          margin-right: 8px
+    @media (max-width: 767px)
+      margin-top: 32px
+      &-title
+        margin: 0
+        font-size: 16px
+      &-input
+        flex-direction: column
+        .adress
+          margin-bottom: 8px
+          margin-right: 0
+          max-width: 100%
+          width: 100%
+        .submit-button
+          margin-bottom: 8px
+          align-self: center
+
 
 
   .icon-inline
@@ -93,7 +131,11 @@
     &--text
       color: #FFFFFF
       width: 70%
-
+    @media (max-width: 768px)
+      margin: 16px auto 0
+      font-size: 14px
+    @media (max-width: 479px)
+      font-size: 12px
 .goals
   padding: 72px 0
   color: #FFFFFF
@@ -155,12 +197,23 @@
           white-space: nowrap
           font-size: 20px
           font-weight: 700
+    @media (max-width: 768px)
+      flex-direction: column
+      gap: 32px
+      &--column
+        width: 100%
+        padding: 0 16px
+      &--column:last-child
+        width: 100%
+        padding: 0 16px
+
+
 
 .ecology
   background-image: url("/assets/images/background-ecology.png")
   background-size: cover
   background-position: center
-  height: 700px
+  height: 800px
   width: 100%
   margin: 100px 0
   display: flex
@@ -194,6 +247,7 @@
 
 
     &--column:last-child
+      overflow: hidden
       display: flex
       gap: 16px
       width: 40%
@@ -234,7 +288,14 @@
         transition: 0.4s
         &:hover
           transform: scale(1.01)
-
+    @media (max-width: 767px)
+      flex-direction: column
+      &--column:first-child
+        width: 100%
+      &--column:last-child
+        width: 100%
+        @media (max-width: 479px)
+          flex-direction: column
 .valeurs
   position: relative
   width: 100%
@@ -306,9 +367,14 @@
       cursor: pointer
       animation: ease-in-out 0.1s
       transition: 0.1s
+
+      @media (max-width: 768px)
+        max-width: 100%
+        margin: 0 8px
       &:hover
         transform: scale(1.01)
         background-color: rgba(39, 39, 39, 0.9)
+
         .icon-inline
           &--image
             filter: invert(26%) sepia(100%) saturate(7314%) hue-rotate(203deg) brightness(95%) contrast(84%)

@@ -1,9 +1,10 @@
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {NavbarComponent} from "../../shared/components/navbar/navbar.component";
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FooterComponent } from '../../shared/footer/footer.component';
+import AOS from 'aos';
 
 
 
@@ -21,8 +22,10 @@ import { FooterComponent } from '../../shared/footer/footer.component';
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.sass'
 })
-export class HomepageComponent{
+export class HomepageComponent implements OnInit{
   title = 'Accueil';
 
-
+  ngOnInit() {
+    AOS.init();
+  }
 }
