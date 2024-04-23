@@ -1,7 +1,12 @@
 .header
-  background-image: url("/assets/images/header.png")
+  background-image: url("/assets/images/header2.png")
   background-size: cover
+  background-position: center
+  background-attachment: fixed
   height: 100vh
+
+  @media (max-width: 991px)
+    background-attachment: initial
 
   .titles
     display: flex
@@ -12,22 +17,43 @@
 
     span
       font-weight: 700
+
+    @media (max-width: 991px)
+      text-align: center
+
     .heading-01
-      font-size: 3rem
+      font-size: 3.5rem
       font-weight: 700
       color: #ffffff
 
+      @media (max-width: 479px)
+        font-size: 2.5rem
+    .heading-02
+      @media (max-width: 479px)
+        font-size: 1rem
+
   .eligibility
-    background-color: rgba(255, 255, 255, 0.15)
+    background-color: rgba(255, 255, 255, 0.25)
     padding: 24px 48px
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
-    margin: 90px auto 0
+    margin: 32px auto 0
     border-radius: 16px
-    max-width: 800px
+    max-width: 900px
     max-height: 180px
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
+
+
+    &-title
+      font-weight: 600
+      color: #FFFFFF
+      margin-bottom: 16px
+      text-align: center
+      width: 75%
+      font-size: 20px
+      text-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
 
     &-input
       display: flex
@@ -39,25 +65,54 @@
         padding: 8px
         border-radius: 4px
         border: none
-        max-width: 450px
+        font-size: 18px
+        max-width: 550px
         width: 100%
         color: #000000
-        height: 40px
-
+        height: 45px
+        box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
         &:focus
           outline: #1468CB auto 2px
 
       .submit-button
-        max-width: 150px
+        max-width: 200px
         width: 100%
         border-radius: 4px
         border: none
         background-color: #1468CB
-        height: 40px
+        font-weight: 600
+        font-size: 20px
+        height: 45px
+        box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
+
 
         &:hover
           background-color: #0E5EAD
           cursor: pointer
+    @media (max-width: 991px)
+      padding: 12px 24px
+      margin: 0 16px
+      max-height: initial
+
+      &-input
+        .adress
+          margin-right: 8px
+    @media (max-width: 767px)
+      margin-top: 32px
+      &-title
+        margin: 0
+        font-size: 16px
+      &-input
+        flex-direction: column
+        .adress
+          margin-bottom: 8px
+          margin-right: 0
+          max-width: 100%
+          width: 100%
+        .submit-button
+          margin-bottom: 8px
+          align-self: center
+
 
 
   .icon-inline
@@ -65,7 +120,7 @@
     align-items: center
     justify-content: center
     gap: 16px
-    margin: 128px auto 0
+    margin: 92px auto 0
     width: 90%
 
     &--separation
@@ -75,3 +130,269 @@
       border-radius: 4px
     &--text
       color: #FFFFFF
+      width: 70%
+    @media (max-width: 768px)
+      margin: 16px auto 0
+      font-size: 14px
+    @media (max-width: 479px)
+      font-size: 12px
+.goals
+  padding: 72px 0
+  color: #FFFFFF
+  position: relative
+
+
+  .transition-top-to-bot
+    background: linear-gradient(to bottom, transparent, #000)
+    height: 100px
+    width: 100%
+    position: absolute
+    top: -99px
+    left: 0
+    z-index: 1
+
+  .custom-flex
+    display: flex
+    gap: 16px
+    padding: 8px 24px
+
+    &--column
+      width: 25%
+      .titles
+        display: flex
+
+        .title
+          font-size: 2rem
+          font-weight: 700
+          color: #FFFFFF
+          margin-bottom: 16px
+          align-items: center
+
+        &:before
+          display: flex
+          content: ""
+          width: 5px
+          height: 40px
+          background-color: #1468CB
+          border-radius: 4px
+          margin-right: 16px
+
+      .paragraph
+        font-size: 16px
+        font-weight: 300
+
+
+    &--column:last-child
+      width: 50%
+      .titles
+        display: flex
+        flex-direction: column
+        .titles
+
+        &:before
+          content: "Initiative Phare"
+          width: 0
+          height: 25px
+          color: #1468CB
+          white-space: nowrap
+          font-size: 20px
+          font-weight: 700
+    @media (max-width: 768px)
+      flex-direction: column
+      gap: 32px
+      &--column
+        width: 100%
+        padding: 0 16px
+      &--column:last-child
+        width: 100%
+        padding: 0 16px
+
+
+
+.ecology
+  background-image: url("/assets/images/background-ecology.png")
+  background-size: cover
+  background-position: center
+  height: 800px
+  width: 100%
+  margin: 100px 0
+  display: flex
+  justify-content: center
+  align-items: center
+
+  .custom-flex
+    display: flex
+    gap: 16px
+    padding: 8px 24px
+    justify-content: center
+    align-items: center
+
+    &--column:first-child
+      color: #FFFFFF
+      display: flex
+      flex-direction: column
+      gap: 8px
+      width: 50%
+
+      .headtitle
+        font-size: 24px
+        font-weight: 500
+
+      .title
+        font-size: 36px
+        font-weight: 700
+      .paragraph
+        font-size: 16px
+        font-weight: 300
+
+
+    &--column:last-child
+      overflow: hidden
+      display: flex
+      gap: 16px
+      width: 40%
+      justify-content: center
+      align-items: center
+
+      .video1
+        background-image: url("/assets/images/video1.png")
+        background-size: cover
+        background-position: center
+        height: 147px
+        width: 230px
+        border-radius: 16px
+        box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.50)
+        cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+        animation: ease-in-out 0.1s
+        transition: 0.4s
+        &:hover
+          transform: scale(1.01)
+
+
+      .video2
+        background-image: url("/assets/images/video2.png")
+        background-size: cover
+        background-position: center
+        height: 150px
+        width: 230px
+        border-radius: 16px
+        box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.50)
+        cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+        animation: ease-in-out 0.1s
+        transition: 0.4s
+        &:hover
+          transform: scale(1.01)
+    @media (max-width: 767px)
+      flex-direction: column
+      &--column:first-child
+        width: 100%
+      &--column:last-child
+        width: 100%
+        @media (max-width: 479px)
+          flex-direction: column
+.valeurs
+  position: relative
+  width: 100%
+  height: fit-content
+  overflow: hidden
+  margin: 128px 0
+  color: #FFFFFF
+  background-color: rgba(0, 0, 0, 0.4)
+
+  .transition-bot-to-top
+    background: linear-gradient(to top, transparent, #000)
+    height: 100px
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 1
+  .transition-top-to-bot
+    background: linear-gradient(to bottom, transparent, #000)
+    height: 100px
+    width: 100%
+    position: absolute
+    bottom: 0
+    left: 0
+    z-index: 1
+  .video
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+    z-index: -1
+
+  .headtitle
+    margin-top: 64px
+    font-size: 20px
+    font-weight: 500
+    text-align: center
+    color: #0E5EAD
+
+  .title
+    font-size: 48px
+    font-weight: 700
+    text-align: center
+
+
+  .custom-flex
+    margin-top: 32px
+    display: flex
+    position: relative
+    z-index: 1
+    gap: 42px
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+
+    &--column
+      max-width: 400px
+      width: 100%
+      height: 250px
+      padding: 8px 24px
+      display: flex
+      flex-direction: column
+      justify-content: center
+      border-radius: 4px
+      box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25)
+      background-color: rgba(21, 21, 21, 0.9)
+      cursor: pointer
+      animation: ease-in-out 0.1s
+      transition: 0.1s
+
+      @media (max-width: 768px)
+        max-width: 100%
+        margin: 0 8px
+      &:hover
+        transform: scale(1.01)
+        background-color: rgba(39, 39, 39, 0.9)
+
+        .icon-inline
+          &--image
+            filter: invert(26%) sepia(100%) saturate(7314%) hue-rotate(203deg) brightness(95%) contrast(84%)
+
+      .icon-inline
+        display: flex
+        flex-direction: column
+        height: 100%
+        align-items: flex-start
+        justify-content: center
+        margin: 0 auto
+        gap: 4px
+        &--image
+        &--text
+          font-size: 24px
+          font-weight: 700
+        &--paragraph
+          margin-top: 16px
+          font-size: 16px
+          font-weight: 300
+
