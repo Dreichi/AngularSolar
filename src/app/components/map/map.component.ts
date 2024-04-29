@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 import { google } from 'google-maps';
 import { createPalette, rgbToColor } from '../../services/visualization.service';
 import { panelsPalette } from '../../colors';
+import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
 
 
 declare var google: any;
@@ -16,7 +17,9 @@ interface BuildingInsight {
 
 
 @Component({
-  imports: [NgIf],
+  imports: [NgIf,
+    AutocompleteComponent,
+  ],
   selector: 'app-map',
   templateUrl: './map.component.html',
   standalone: true,
@@ -53,7 +56,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         return;
       }
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&callback=initMap&libraries=geometry`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places&callback=initMap&libraries=geometry`;
       script.async = true;
       script.defer = true;
       (window as any)['initMap'] = () => { resolve(); };

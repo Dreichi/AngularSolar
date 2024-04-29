@@ -5,6 +5,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import AOS from 'aos';
+import { AutocompleteComponent } from '../../components/autocomplete/autocomplete.component';
 
 
 
@@ -17,7 +18,8 @@ import AOS from 'aos';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    FooterComponent
+    FooterComponent,
+    AutocompleteComponent
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.sass'
