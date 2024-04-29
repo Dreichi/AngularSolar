@@ -1,1 +1,12 @@
-<div #googleMap style="width: 100%; height: 100vh;"></div>
+<div style="display: flex; height: 100vh;">
+    <div style="width: 15%; background-color: black; color: white; padding: 10px;">
+        <h2>Bienvenue sur la map !</h2>
+        <p>Cliquez sur une maison pour découvrir son potentiel énergétique.</p>
+        <div *ngIf="selectedBuilding">
+            <h3>Statistiques du Toit:</h3>
+            <p><strong>Énergie annuelle:</strong> {{ selectedBuilding.yearlyEnergyKwh }} kWh</p>
+            <p><strong>Potentiel solaire:</strong> {{ selectedBuilding.solarPotential }}</p>
+          </div>
+    </div>
+    <div #googleMap style="width: 85%; height: 100vh;"></div>
+</div>

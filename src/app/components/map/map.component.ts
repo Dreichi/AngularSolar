@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgIf } from '@angular/common';
 import { SolarApiService } from '../../services/solar-api.service';
 import { environment } from "../../../environments/environment";
-import { HttpClient } from '@angular/common/http';
 import { google } from 'google-maps';
 import { createPalette, rgbToColor } from '../../services/visualization.service';
 import { panelsPalette } from '../../colors';
@@ -10,8 +9,14 @@ import { panelsPalette } from '../../colors';
 
 declare var google: any;
 
+interface BuildingInsight {
+  yearlyEnergyKwh: number;
+  solarPotential: number;
+}
+
 
 @Component({
+  imports: [NgIf],
   selector: 'app-map',
   templateUrl: './map.component.html',
   standalone: true,
@@ -20,10 +25,11 @@ declare var google: any;
 export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('googleMap', { static: false }) mapElement: ElementRef | undefined;
   private map: any;
+  selectedBuilding: BuildingInsight | null = null;
+
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private http: HttpClient,
     private solarApiService: SolarApiService,
   ) {}
 
@@ -37,6 +43,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  
 
   private async loadGoogleMapsApi(): Promise<void> {
     return new Promise((resolve) => {
@@ -52,6 +60,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       document.head.appendChild(script);
     });
   }
+
+  
 
   private initMap(): void {
     if (this.mapElement && this.mapElement.nativeElement) {
@@ -69,11 +79,12 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.map.addListener('click', (event: { latLng: { lat: () => number; lng: () => number; }; }) => {
             const latLng = { latitude: event.latLng.lat(), longitude: event.latLng.lng() };
             this.solarApiService.findClosestBuilding(latLng).subscribe(buildingInsights => {
+              this.selectedBuilding = this.processBuildingData(buildingInsights);
               console.log('Building insights:', buildingInsights);
-                const solarPotential = buildingInsights.solarPotential;
-                    const palette = createPalette(panelsPalette).map(rgbToColor); 
-                    const minEnergy = solarPotential.solarPanels.slice(-1)[0].yearlyEnergyDcKwh;
-                    const maxEnergy = solarPotential.solarPanels[0].yearlyEnergyDcKwh;
+              const solarPotential = buildingInsights.solarPotential;
+              const palette = createPalette(panelsPalette).map(rgbToColor); 
+              const minEnergy = solarPotential.solarPanels.slice(-1)[0].yearlyEnergyDcKwh;
+              const maxEnergy = solarPotential.solarPanels[0].yearlyEnergyDcKwh;
                     const solarPanels = solarPotential.solarPanels.map(panel => {
                         const [w, h] = [solarPotential.panelWidthMeters / 2, solarPotential.panelHeightMeters / 2];
                         const points = [
@@ -106,8 +117,25 @@ export class MapComponent implements OnInit, AfterViewInit {
                     solarPanels.forEach(panel => panel.setMap(this.map));
                 }, error => {
                     console.error('Error fetching solar potential:', error);
+                    this.selectedBuilding = null;
                 });
             });
         }
     }
+
+    private processBuildingData(data: any): BuildingInsight {
+      const yearlyEnergyKwh = data?.solarPotential?.wholeRoofStats?.sunshineQuantiles
+        ? data.solarPotential.wholeRoofStats.sunshineQuantiles.reduce((a: number, b: number) => a + b, 0) / data.solarPotential.wholeRoofStats.sunshineQuantiles.length
+        : 0; 
+
+    
+      const solarPotential = data?.solarPotential?.maxArrayPanelsCount || 0; 
+
+  
+    
+      return {
+        yearlyEnergyKwh,
+        solarPotential
+      };
     }
+  }

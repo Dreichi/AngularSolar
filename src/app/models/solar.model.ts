@@ -18,6 +18,7 @@ export interface DataLayersResponse {
   }
   
   export interface BuildingInsightsResponse {
+    yearlyEnergyKwh: number;
     name: string;
     center: LatLng;
     boundingBox: LatLngBox;
