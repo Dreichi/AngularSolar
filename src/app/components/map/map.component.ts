@@ -6,7 +6,7 @@ import { google } from 'google-maps';
 import { createPalette, rgbToColor } from '../../services/visualization.service';
 import { panelsPalette } from '../../colors';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 declare var google: any;
 
@@ -19,6 +19,7 @@ interface BuildingInsight {
 @Component({
   imports: [NgIf,
     AutocompleteComponent,
+    RouterLink
   ],
   selector: 'app-map',
   templateUrl: './map.component.html',
