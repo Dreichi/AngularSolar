@@ -1,13 +1,16 @@
 <div style="display: flex; height: 100vh;">
-    <div style="width: 15%; background-color: black; color: white; padding: 10px;">
+    <div style="width: 100%; background-color: transparent; color: white; padding: 10px; position: absolute; z-index: 3; text-align: center;">
+        <a class="return-btn" routerLink="/">Retour à l'accueil</a>
         <h2>Bienvenue sur la map !</h2>
         <p>Cliquez sur une maison pour découvrir son potentiel énergétique.</p>
-        <div *ngIf="selectedBuilding">
+        <div class="datas" *ngIf="selectedBuilding">
             <h3>Statistiques du Toit:</h3>
-            <p><strong>Énergie annuelle:</strong> {{ selectedBuilding.yearlyEnergyKwh | number:'1.0-0' }} kWh</p>
-            <p><strong>kWc:</strong>  {{ selectedBuilding.kWc | number:'1.0-0' }} </p>
-            <p><strong>Revenue annuel:</strong>  {{ selectedBuilding.annualRevenue }} € </p>
+            <div class="data-container">
+              <p class="data"><strong>Énergie annuelle:</strong> <span class="colored">{{ selectedBuilding.yearlyEnergyKwh | number:'1.0-0' }}</span> kWh</p>
+              <p class="data"><strong>kWc:</strong>  <span class="colored">{{ selectedBuilding.kWc | number:'1.0-0' }}</span> </p>
+              <p class="data"><strong>Revenue annuel:</strong>  <span class="colored">{{ selectedBuilding.annualRevenue }}</span> € </p>
+           </div>
           </div>
     </div>
-    <div #googleMap style="width: 85%; height: 100vh;"></div>
+    <div #googleMap style="width: 100%; height: 100vh;"></div>
 </div>

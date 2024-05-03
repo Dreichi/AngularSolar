@@ -1,2 +1,25 @@
 @import "sass/base.sass"
 
+.pac-container
+  background-color: white
+  color: #272727
+
+.pac-item
+  color: #272727
+
+  &:hover
+    background-color: #D6D6D6
+    cursor: pointer
+
+  /* Cibler uniquement le dernier `span` dans `.pac-item` */
+  span:last-child
+    color: #272727
+
+.pac-item-selected
+  color: red
+  
+.pac-item-query
+  color: #272727
+
+.pac-matched
+  color: #1468CB !important

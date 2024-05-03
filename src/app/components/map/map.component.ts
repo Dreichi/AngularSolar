@@ -5,6 +5,8 @@ import { environment } from "../../../environments/environment";
 import { google } from 'google-maps';
 import { createPalette, rgbToColor } from '../../services/visualization.service';
 import { panelsPalette } from '../../colors';
+import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 declare var google: any;
 
@@ -16,7 +18,11 @@ interface BuildingInsight {
 }
 
 @Component({
-  imports: [CommonModule],
+  imports: [NgIf,
+    AutocompleteComponent,
+           CommonModule,
+    RouterLink
+  ],
   selector: 'app-map',
   templateUrl: './map.component.html',
   standalone: true,
@@ -32,6 +38,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     private zone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object,
     private solarApiService: SolarApiService,
+    private route: ActivatedRoute 
+
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +60,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         return;
       }
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&callback=initMap&libraries=geometry`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&libraries=places&callback=initMap&libraries=geometry`;
       script.async = true;
       script.defer = true;
       (window as any)['initMap'] = () => { resolve(); };
@@ -61,10 +69,17 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   private initMap(): void {
+
+    this.route.queryParams.subscribe(params => {
+      const defaultLat = 50.433020;
+      const defaultLng = 2.8279100;
+      const latitude = +params['lat'] || defaultLat;
+      const longitude = +params['lng'] || defaultLng;
+
     if (this.mapElement && this.mapElement.nativeElement) {
         const mapOptions: google.maps.MapOptions = {
-            center: new google.maps.LatLng(50.433020, 2.8279100),
-            zoom: 16,
+          center: new google.maps.LatLng(latitude, longitude),
+            zoom: 20,
             streetViewControl: false,
             fullscreenControl: false,
             mapTypeControl: false,
@@ -116,10 +131,12 @@ export class MapComponent implements OnInit, AfterViewInit {
                 }, error => {
                     console.error('Error fetching solar potential:', error);
                     this.selectedBuilding = null;
+                  });
                 });
+              }
             });
-        }
-    }
+          }
+    
 
     private processBuildingData(data: any): BuildingInsight {
       const yearlyEnergyKwh = data?.solarPotential?.wholeRoofStats?.sunshineQuantiles
