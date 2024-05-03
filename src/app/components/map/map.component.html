@@ -6,9 +6,10 @@
         <div class="datas" *ngIf="selectedBuilding">
             <h3>Statistiques du Toit:</h3>
             <div class="data-container">
-                <p class="data"><strong>Énergie annuelle</strong><br><span class="colored">{{ selectedBuilding.yearlyEnergyKwh }}</span> kWh</p>
-                <p class="data"><strong>Potentiel solaire</strong><br><span class="colored">{{ selectedBuilding.solarPotential }}</span></p>
-            </div>
+              <p class="data"><strong>Énergie annuelle:</strong> <span class="colored">{{ selectedBuilding.yearlyEnergyKwh | number:'1.0-0' }}</span> kWh</p>
+              <p class="data"><strong>kWc:</strong>  <span class="colored">{{ selectedBuilding.kWc | number:'1.0-0' }}</span> </p>
+              <p class="data"><strong>Revenue annuel:</strong>  <span class="colored">{{ selectedBuilding.annualRevenue }}</span> € </p>
+           </div>
           </div>
     </div>
     <div #googleMap style="width: 100%; height: 100vh;"></div>
