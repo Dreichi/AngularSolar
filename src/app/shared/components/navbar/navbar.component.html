@@ -1,6 +1,12 @@
 <nav class="navbar">
   <div class="left">
-    <img ngSrc="assets/images/SolarHouseLogo.png" alt="Logo" class="logo" height="82" width="170"/>
+    <img
+      ngSrc="assets/images/SolarHouseLogo.png"
+      alt="Logo"
+      class="logo"
+      height="82"
+      width="170"
+    />
   </div>
   <div class="center">
     <a routerLink="/">Accueil</a>
@@ -8,7 +14,14 @@
     <a routerLink="/contact">Contact</a>
   </div>
   <div class="right">
-    <img ngSrc="assets/images/UserIcon.png" alt="Se connecter" class="connexion-logo" height="41" width="35"/>
+    <img
+      ngSrc="assets/images/UserIcon.png"
+      alt="Se connecter"
+      class="connexion-logo"
+      height="41"
+      width="35"
+      (click)="onConnexionClick()"
+    />
   </div>
 </nav>
 <div class="navbar-mobile">
@@ -20,14 +33,131 @@
       <span class="line line3"></span>
     </div>
     <div class="logo-mobile">
-      <img src="assets/images/SolarHouseLogo.png">
+      <img src="assets/images/SolarHouseLogo.png" />
     </div>
     <div class="menu-items">
-      <li><img src="assets/images/SolarHouseLogo.png"></li>
+      <li><img src="assets/images/SolarHouseLogo.png" /></li>
       <li><a routerLink="/">Accueil</a></li>
       <li><a routerLink="/map">Carte</a></li>
       <li><a routerLink="/account">Mon compte</a></li>
       <li><a routerLink="/contact">Nous contactez</a></li>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Créer un compte / Se connecter</h2>
+
+    <div>
+      <h3>Inscription</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+        <div>
+          <label for="username">Nom d'utilisateur</label>
+          <input id="username" formControlName="username" required />
+          <div
+            *ngIf="
+              registerForm.get('username')?.invalid &&
+              registerForm.get('username')?.touched
+            "
+          >
+            <small *ngIf="registerForm.get('username')?.errors?.['required']"
+              >Nom d'utilisateur est requis.</small
+            >
+          </div>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" type="email" required />
+          <div
+            *ngIf="
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+            "
+          >
+            <small *ngIf="registerForm.get('email')?.errors?.['required']"
+              >Email est requis.</small
+            >
+            <small *ngIf="registerForm.get('email')?.errors?.['email']"
+              >Email n'est pas valide.</small
+            >
+          </div>
+        </div>
+        <div>
+          <label for="password">Mot de passe</label>
+          <input
+            id="password"
+            formControlName="password"
+            type="password"
+            required
+          />
+          <div
+            *ngIf="
+              registerForm.get('password')?.invalid &&
+              registerForm.get('password')?.touched
+            "
+          >
+            <small *ngIf="registerForm.get('password')?.errors?.['required']"
+              >Mot de passe est requis.</small
+            >
+            <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
+              Mot de passe doit avoir au moins 6 caractères.
+            </small>
+          </div>
+        </div>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+
+    <div>
+      <h3>Connexion</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <div>
+          <label for="login-email">Email</label>
+          <input
+            id="login-email"
+            formControlName="email"
+            type="email"
+            required
+          />
+          <div
+            *ngIf="
+              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            "
+          >
+            <small *ngIf="loginForm.get('email')?.errors?.['required']"
+              >Email est requis.</small
+            >
+            <small *ngIf="loginForm.get('email')?.errors?.['email']"
+              >Email n'est pas valide.</small
+            >
+          </div>
+        </div>
+        <div>
+          <label for="login-password">Mot de passe</label>
+          <input
+            id="login-password"
+            formControlName="password"
+            type="password"
+            required
+          />
+          <div
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+          >
+            <small *ngIf="loginForm.get('password')?.errors?.['required']"
+              >Mot de passe est requis.</small
+            >
+            <small *ngIf="loginForm.get('password')?.errors?.['minlength']">
+              Mot de passe doit avoir au moins 6 caractères.
+            </small>
+          </div>
+        </div>
+        <button type="submit">Se connecter</button>
+      </form>
     </div>
   </div>
 </div>
