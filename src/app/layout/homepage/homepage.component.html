@@ -8,8 +8,8 @@
     <div class="eligibility">
       <p class="eligibility-title">Evaluons ensemble le côté de votre toit ayant le plus gros taux d’ensoleillement</p>
       <div class="eligibility-input">
-        <input class="adress" type="text" placeholder="Entrez votre adresse">
-        <button class="submit-button">ALLONS-Y</button>
+  <app-autocomplete (coordinatesSelected)="onCoordinatesSelected($event)"></app-autocomplete>
+  <button class="submit-button" (click)="navigateToMap()">ALLONS-Y</button>
       </div>
     </div>
       <div data-aos="fade-right" data-aos-duration="1000" class="icon-inline">
